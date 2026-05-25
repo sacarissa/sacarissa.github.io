@@ -179,12 +179,12 @@
     .about-left { }
     .about-avatar {
       width: 80px; height: 80px; border-radius: 50%;
-      background: var(--parchment);
-      border: 2px solid var(--sage);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px; color: var(--forest);
-      margin-bottom: 1.25rem;
+      overflow: hidden; border: none;
+      display: block; margin-bottom: 1.25rem;
+    }
+    .about-avatar img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
     }
     .about-name {
       font-family: 'Cormorant Garamond', serif;
@@ -271,7 +271,7 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
-      <a class="pill" href="mailto:sacarissa@gmail.com">
+      <a class="pill" href="https://github.com/sacarissa" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
         Get in touch
       </a>
@@ -347,7 +347,9 @@
     </div>
     <div class="about-layout">
       <div class="about-left">
-        <div class="about-avatar">SS</div>
+        <div class="about-avatar">
+          <img src="resources/Sacarissa.jpg" alt="Sacarissa Salim" />
+        </div>
         <p class="about-name">Sacarissa Salim</p>
         <p class="about-role">Project Leader, BCG · New York</p>
         <div class="tags">
