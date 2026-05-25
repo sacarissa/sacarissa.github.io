@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sacarissa Salim — Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest: #2C4A3E;
+      --matcha: #5C7A5E;
+      --sage: #A8BC9A;
+      --cream: #F7F4EE;
+      --parchment: #EDE8DF;
+      --gold: #B8975A;
+      --gold-light: #D4B87A;
+      --ink: #1C2B22;
+      --muted: #6B7B6E;
+      --border: rgba(44,74,62,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(247,244,238,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 500;
+      color: var(--forest); text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 900px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem; font-weight: 400;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 400; line-height: 1.0;
+      color: var(--forest); margin-bottom: 1.75rem;
+    }
+    .hero-title em { font-style: italic; color: var(--matcha); }
+    .hero-desc {
+      font-size: 17px; color: var(--muted);
+      max-width: 520px; margin-bottom: 2.5rem;
+      font-weight: 300; line-height: 1.75;
+    }
+    .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 400; letter-spacing: 0.04em;
+      padding: 8px 18px; border-radius: 99px;
+      border: 1px solid var(--border);
+      color: var(--muted); text-decoration: none;
+      background: white; transition: all 0.2s;
+    }
+    .pill:hover { border-color: var(--gold); color: var(--forest); }
+    .pill svg { width: 14px; height: 14px; }
+
+    /* SECTION */
+    section { padding: 5rem 3rem; max-width: 900px; margin: 0 auto; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); font-weight: 400;
+    }
+    .section-rule { flex: 1; height: 1px; background: var(--border); }
+
+    /* PROJECT CARDS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(44,74,62,0.08);
+    }
+    .project-card.coming-soon { opacity: 0.55; }
+
+    .video-slot {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--parchment);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .video-slot::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(92,122,94,0.06) 0%, rgba(184,151,90,0.06) 100%);
+    }
+    .play-ring {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); position: relative; z-index: 1;
+    }
+    .play-ring svg { width: 16px; height: 16px; margin-left: 2px; }
+    .video-note {
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); position: relative; z-index: 1;
+    }
+
+    .card-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .card-type {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 8px; font-weight: 400;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 500;
+      color: var(--forest); margin-bottom: 8px; line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 13.5px; color: var(--muted);
+      line-height: 1.65; margin-bottom: 1.1rem;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--forest); text-decoration: none; font-weight: 400;
+      border-bottom: 1px solid var(--sage); padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .card-link:hover { color: var(--gold); border-color: var(--gold); }
+    .card-link svg { width: 12px; height: 12px; }
+
+    /* ABOUT */
+    .about-layout {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem;
+      align-items: start;
+    }
+    .about-left { }
+    .about-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--parchment);
+      border: 2px solid var(--sage);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; color: var(--forest);
+      margin-bottom: 1.25rem;
+    }
+    .about-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 500; color: var(--forest);
+      margin-bottom: 4px;
+    }
+    .about-role { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px; padding: 4px 12px; border-radius: 99px;
+      border: 1px solid var(--border); color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .about-text { font-size: 15px; color: var(--muted); line-height: 1.8; }
+    .about-text p + p { margin-top: 1rem; }
+
+    /* CONTACT */
+    .contact-band {
+      background: var(--forest);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .contact-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px; font-weight: 400; color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .contact-band p { font-size: 15px; color: var(--sage); margin-bottom: 2rem; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 12px 28px; border-radius: 99px;
+      border: 1px solid var(--gold); color: var(--gold);
+      text-decoration: none; font-family: 'Jost', sans-serif;
+      transition: all 0.2s;
+    }
+    .contact-btn:hover { background: var(--gold); color: var(--forest); }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 3rem; text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted); letter-spacing: 0.04em;
+    }
+
+    /* FADE IN */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+    .hero-title   { animation: fadeUp 0.6s 0.1s ease both; }
+    .hero-desc    { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-pills   { animation: fadeUp 0.6s 0.3s ease both; }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .hero, section { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .about-layout { grid-template-columns: 1fr; gap: 1.75rem; }
+      .contact-band { padding: 3.5rem 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Sacarissa Salim</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Portfolio · New York</p>
+    <h1 class="hero-title">Building at the<br><em>edge of data</em><br>& technology.</h1>
+    <p class="hero-desc">Project Leader at BCG · NYU Stern MS in Business Analytics & AI · I vibe-code tools that turn messy data into clear decisions.</p>
+    <div class="hero-pills">
+      <a class="pill" href="https://www.linkedin.com/in/sacarissa/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="pill" href="mailto:sacarissa@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        Get in touch
+      </a>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-label">Projects</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- MISE -->
+      <div class="project-card">
+        <div class="video-slot">
+          <div class="play-ring">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <span class="video-note">Demo coming soon</span>
+        </div>
+        <div class="card-body">
+          <p class="card-type">AI · Business Intelligence</p>
+          <h3 class="card-title">Mise</h3>
+          <p class="card-desc">An AI-powered BI app for independent cafe owners. Upload your POS data, delivery reports, and reviews — Mise turns the chaos into plain-English, prioritised actions. Built on Claude.</p>
+          <a class="card-link" href="https://id-preview--6b3101f3-8d1e-4eae-9dee-e41d17ec34e6.lovable.app/" target="_blank">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- COMING SOON 1 -->
+      <div class="project-card coming-soon">
+        <div class="video-slot">
+          <div class="play-ring" style="border-color: var(--sage); color: var(--sage);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span class="video-note">Coming soon</span>
+        </div>
+        <div class="card-body">
+          <p class="card-type">Next project</p>
+          <h3 class="card-title">In the works</h3>
+          <p class="card-desc">Something new is on its way. Check back soon!</p>
+        </div>
+      </div>
+
+      <!-- COMING SOON 2 -->
+      <div class="project-card coming-soon">
+        <div class="video-slot">
+          <div class="play-ring" style="border-color: var(--sage); color: var(--sage);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span class="video-note">Coming soon</span>
+        </div>
+        <div class="card-body">
+          <p class="card-type">Next project</p>
+          <h3 class="card-title">More to come</h3>
+          <p class="card-desc">Stay tuned — more projects are in progress.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-label">About</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-layout">
+      <div class="about-left">
+        <div class="about-avatar">SS</div>
+        <p class="about-name">Sacarissa Salim</p>
+        <p class="about-role">Project Leader, BCG · New York</p>
+        <div class="tags">
+          <span class="tag">Business Analytics</span>
+          <span class="tag">AI</span>
+          <span class="tag">Strategy</span>
+          <span class="tag">Vibe coding</span>
+          <span class="tag">NYU Stern</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>I'm a management consultant with 8+ years at BCG, currently completing a Master's in Business Analytics & AI at NYU Stern on a Dean's Scholarship.</p>
+        <p>My work lives at the intersection of data, technology, and business strategy. Lately I've been channelling that into building — using AI tools to turn ideas into real products, fast.</p>
+        <p>I'm drawn to problems where messy real-world data meets a genuine human need, and where clear thinking can unlock better decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-band" id="contact">
+    <h2>Let's connect.</h2>
+    <p>Open to conversations about consulting, data, AI, or just good ideas.</p>
+    <a class="contact-btn" href="https://www.linkedin.com/in/sacarissa/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      Connect on LinkedIn
+    </a>
+  </div>
+
+  <footer>
+    © 2026 Sacarissa Salim
+  </footer>
+
+</body>
+</html>
